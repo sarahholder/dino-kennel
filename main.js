@@ -64,18 +64,13 @@ const dinoHealth =(e)=>{
  dinos[dinoPosition].health += 1;
     printDinos(dinos);
  }
-}
-
-
+};
 const petEvents = () => {
     const dinoPetButtons = document.getElementsByClassName('dino-photo');
     for (let i =0; i < dinoPetButtons.length; i++){
         dinoPetButtons[i].addEventListener('mouseleave', dinoHealth);
     }
 };
-
-
-
 const printDinos = (dinoArray) => {
     let domString = '';
     for (let i =0; i < dinoArray.length; i++){
@@ -94,7 +89,6 @@ const printDinos = (dinoArray) => {
     singleDinoAddEvents();
     petEvents();
   };
-
 const newDino = (e) => {
     e.preventDefault();
     const brandNewDino = {
