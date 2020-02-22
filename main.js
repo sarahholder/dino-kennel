@@ -71,6 +71,21 @@ const petEvents = () => {
         dinoPetButtons[i].addEventListener('mouseleave', dinoHealth);
     }
 };
+
+const deleteDinoEvent=(e)=>{
+  const dinoId = e.target.closest('.card').id;
+  const dinoPosition = dinos.findIndex((p) => p.id === dinoId);
+      dinos.splice(dinoPosition, 1);
+      printDinos(dinos);
+  }
+  const deleteEvents = () => {
+    const dinoDeleteButtons = document.getElementsByClassName('delete-dino');
+    for(let i = 0; i < dinoDeleteButtons.length; i++){
+      dinoDeleteButtons[i].addEventListener('click', deleteDinoEvent);
+    }
+  };
+
+
 const printDinos = (dinoArray) => {
     let domString = '';
     for (let i =0; i < dinoArray.length; i++){
@@ -81,6 +96,7 @@ const printDinos = (dinoArray) => {
       domString += `  <h5 class="card-title">${dinoArray[i].name}</h5>`;
       domString += `  <p class="card-text">Health: ${dinoArray[i].health}</p>`;
       domString += `<button type="button" class="btn btn-outline-dark single-dino"><i class="far fa-eye"></i></button>`;
+      domString += `<button type="button" class="btn btn-outline-danger delete-dino"><i class="fas fa-trash-alt"></i></button>`;
       domString += '</div>';
       domString += '</div>';
       domString += '</div>';
@@ -88,6 +104,7 @@ const printDinos = (dinoArray) => {
     printToDom('kennel', domString);
     singleDinoAddEvents();
     petEvents();
+    deleteEvents();
   };
 const newDino = (e) => {
     e.preventDefault();
